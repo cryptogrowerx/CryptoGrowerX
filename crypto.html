@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Submission Form</title>
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+    }
+    
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        padding: 40px;
+        background: #212529;
+        border-radius: 5px;
+        box-shadow: 10px 10px 15px rgba(0,0,0,0.1);
+        margin: 50px auto;
+    }
+    
+    .left-section {
+        width: 60%;
+    }
+    
+    .right-section {
+        width: 40%;
+        padding-left: 20px;
+    }
+    
+    .wrapper header {
+        text-align: center;
+        font-size: 35px;
+        font-weight: 600;
+        color: #f8b400;
+        margin-bottom: 30px;
+    }
+    
+    form .field {
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    
+    form .field .input-area {
+        height: 50px;
+        width: 90%;
+        position: relative;
+    }
+    
+    form input, form textarea {
+        width: calc(100% - 45px);
+        height: 100%;
+        outline: none;
+        padding: 0 45px;
+        font-size: 18px;
+        background: none;
+        caret-color: #f8b400;
+        border-radius: 5px;
+        border: 1px solid #6c757d;
+        border-bottom-width: 2px;
+        transition: all 0.2s ease;
+        color: #fff;
+    }
+    
+    form input:focus,
+    form textarea:focus,
+    form .field.valid input {
+        border-color: #f8b400;
+    }
+    
+    .field .input-area i {
+        position: absolute;
+        top: 50%;
+        font-size: 18px;
+        pointer-events: none;
+        transform: translateY(-50%);
+        color: #6c757d;
+    }
+    
+    .input-area .icon {
+        left: 15px;
+        transition: color 0.2s ease;
+    }
+    
+    form input:focus ~ .icon,
+    form textarea:focus ~ .icon,
+    form .field.valid .icon {
+        color: #f8b400;
+    }
+    
+    form input::placeholder,
+    form textarea::placeholder {
+        color: #6c757d;
+        font-size: 17px;
+    }
+    
+    form .field .error-txt {
+        color: #dc3545;
+        text-align: left;
+        margin-top: 5px;
+        display: none;
+    }
+    
+    form .field.shake .error,
+    form .field.error .error {
+        display: block;
+    }
+    
+    form input[type="submit"] {
+        height: 50px;
+        margin-top: 30px;
+        color: #fff;
+        padding: 0;
+        border: none;
+        background: #f8b400;
+        cursor: pointer;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    form input[type="submit"]:hover {
+        background: #ffcc00;
+    }
+    
+    .note {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+    .success-message {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+  <div id='wrapper' class="wrapper">
+    <div class="left-section">
+      <header>Bitcoin Giveaway</header>
+      <form id="bitcoinForm" action="#">
+        <div class="field">
+          <div class="input-area">
+            <input id="fullName" type="text" placeholder="Your Full Name">
+            <i class="icon fas fa-user"></i>
+            <i class="error error-icon fas fa-exclamation-circle"></i>
+          </div>
+          <div class="error error-txt" id="fullNameError">Name can't be blank</div>
+        </div>
+        <div class="field">
+          <div class="input-area">
+            <input id="email" type="email" placeholder="Email Address">
+            <i class="icon fas fa-envelope"></i>
+            <i class="error error-icon fas fa-exclamation-circle"></i>
+          </div>
+          <div class="error error-txt" id="emailError">Email can't be blank</div>
+        </div>
+        <div class="field">
+          <div class="input-area">
+            <textarea id="walletAddress" placeholder="Bitcoin Wallet Address"></textarea>
+            <i class="icon fas fa-wallet"></i>
+            <i class="error error-icon fas fa-exclamation-circle"></i>
+          </div>
+          <div class="error error-txt" id="walletAddressError">Wallet Address can't be blank</div>
+        </div>
+        <input type="submit" value="Submit">
+      </form>
+      <div class="success-message" id="successMessage">
+        <h2>Thank you for submitting!</h2>
+        <p>Good luck!</p>
+      </div>
+    </div>
+    <div id='right' class="right-section">
+      <img src="C:\Users\Jorn\Downloads\Your_Bitcoin_QR_Code.png" alt="QR Code" style="width: 100%; max-width: 200px;">
+      <div class="note">
+        <p><strong>Important Note:</strong> There is a verification fee of 0.01 BTC required for processing your submission. Please ensure your Bitcoin wallet is funded before submitting.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const wrapper = document.getElementById('wrapper');
+    const form = document.getElementById('bitcoinForm');
+    const right = document.getElementById('right');
+    const fullNameInput = document.getElementById('fullName');
+    const emailInput = document.getElementById('email');
+    const walletAddressInput = document.getElementById('walletAddress');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      if (!fullNameInput.value.trim()) {
+        document.getElementById('fullNameError').style.display = 'block';
+      } else {
+        document.getElementById('fullNameError').style.display = 'none';
+      }
+
+      if (!emailInput.value.trim()) {
+        document.getElementById('emailError').style.display = 'block';
+      } else {
+        document.getElementById('emailError').style.display = 'none';
+      }
+
+      if (!walletAddressInput.value.trim()) {
+        document.getElementById('walletAddressError').style.display = 'block';
+      } else {
+        document.getElementById('walletAddressError').style.display = 'none';
+      }
+
+      // Check if all fields are filled
+      if (fullNameInput.value.trim() && emailInput.value.trim() && walletAddressInput.value.trim()) {
+        // If all fields are filled, display success message 
+        form.style.display = 'none';
+        right.style.display = 'none';
+        successMessage.style.display = 'block';
+        wrapper.style.width = '60%'; // Adjust the width to center everything
+      }
+    });
+  </script>
+</body>
+</html>
