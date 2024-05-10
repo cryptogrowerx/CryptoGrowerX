@@ -15,128 +15,62 @@
     
     .wrapper {
         display: flex;
+        flex-direction: row; /* Default to row layout */
         justify-content: center;
         align-items: center;
         width: 80%;
-        padding: 40px;
+        padding: 20px;
         background: #212529;
         border-radius: 5px;
         box-shadow: 10px 10px 15px rgba(0,0,0,0.1);
         margin: 50px auto;
     }
     
-    .left-section {
-        width: 60%;
+    .left-section, .right-section {
+        flex: 1; /* Adjust the flex basis for equal width on smaller screens */
     }
-    
+
     .right-section {
-        width: 40%;
         padding-left: 20px;
     }
     
     .wrapper header {
         text-align: center;
-        font-size: 35px;
+        font-size: 24px; /* Smaller font size for mobile */
         font-weight: 600;
         color: #f8b400;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
     
     form .field {
-        width: 100%;
-        margin-bottom: 20px;
-        text-align: left;
-    }
-    
-    form .field .input-area {
-        height: 50px;
-        width: 90%;
-        position: relative;
+        margin-bottom: 15px;
     }
     
     form input, form textarea {
-        width: calc(100% - 45px);
-        height: 100%;
-        outline: none;
-        padding: 0 45px;
-        font-size: 18px;
-        background: none;
-        caret-color: #f8b400;
-        border-radius: 5px;
-        border: 1px solid #6c757d;
-        border-bottom-width: 2px;
-        transition: all 0.2s ease;
-        color: #fff;
+        font-size: 16px; /* Smaller font size for mobile */
     }
-    
-    form input:focus,
-    form textarea:focus,
-    form .field.valid input {
-        border-color: #f8b400;
-    }
-    
-    .field .input-area i {
-        position: absolute;
-        top: 50%;
-        font-size: 18px;
-        pointer-events: none;
-        transform: translateY(-50%);
-        color: #6c757d;
-    }
-    
-    .input-area .icon {
-        left: 15px;
-        transition: color 0.2s ease;
-    }
-    
-    form input:focus ~ .icon,
-    form textarea:focus ~ .icon,
-    form .field.valid .icon {
-        color: #f8b400;
-    }
-    
-    form input::placeholder,
-    form textarea::placeholder {
-        color: #6c757d;
-        font-size: 17px;
-    }
-    
-    form .field .error-txt {
-        color: #dc3545;
-        text-align: left;
-        margin-top: 5px;
-        display: none;
-    }
-    
-    form .field.shake .error,
-    form .field.error .error {
-        display: block;
-    }
-    
+
     form input[type="submit"] {
-        height: 50px;
-        margin-top: 30px;
-        color: #fff;
-        padding: 0;
-        border: none;
-        background: #f8b400;
-        cursor: pointer;
-        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        height: 45px; /* Smaller button for mobile */
     }
-    
-    form input[type="submit"]:hover {
-        background: #ffcc00;
-    }
-    
-    .note {
-        font-size: 14px;
-        margin-top: 20px;
-    }
-    .success-message {
-      display: none;
-      text-align: center;
-      margin-top: 50px;
+
+    /* Media Query for Screens smaller than 768px */
+    @media (max-width: 768px) {
+        .wrapper {
+            flex-direction: column; /* Stack vertically on small screens */
+            width: 95%; /* Use more screen width on smaller devices */
+            margin: 20px auto; /* Less margin for small screens */
+            padding: 10px; /* Less padding */
+        }
+
+        .left-section, .right-section {
+            width: 100%; /* Full width for stacked layout */
+            padding: 0; /* Remove padding for better use of space */
+        }
+
+        .right-section {
+            margin-top: 20px; /* Space between sections when stacked */
+        }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
