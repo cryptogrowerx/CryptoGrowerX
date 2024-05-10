@@ -149,11 +149,28 @@
     .note {
         font-size: 14px;
         margin-top: 20px;
+        color: #dc3545;
     }
     .success-message {
       display: none;
       text-align: center;
       margin-top: 50px;
+    }
+    @media screen and (max-width: 650px) {
+      .wrapper {
+        flex-direction: column;
+        padding: 20px; /* Reduced padding for smaller screens */
+      }
+      
+      .left-section,
+      .right-section {
+        width: 100%; /* Full width for smaller screens */
+        padding: 10px; /* Reduced padding for smaller screens */
+      }
+
+      .right-section {
+        margin-top: 20px; /* Space between the sections */
+      }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
